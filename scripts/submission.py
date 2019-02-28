@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+# test all dataSet
 from __future__ import division, print_function
 
 import os
@@ -63,7 +63,7 @@ def main():
     glob_search = os.path.join(args.datadir, "patient*")
     patient_dirs = sorted(glob.glob(glob_search))
     if len(patient_dirs) == 0:
-        raise Exception("No patient directors found in {}".format(data_dir))
+        raise Exception("No patient directors found in {}".format(args.data_dir))
 
     # get image dimensions from first patient
     images, _, _, _ = load_patient_images(patient_dirs[0], args.normalize)
@@ -116,6 +116,7 @@ def main():
                 filename = "P{:02d}-{:04d}-{}contour-auto.png".format(
                     patient_number, frame_index, contour_type)
                 outpath = os.path.join(args.outdir, filename)
+                print(outpath)
                 save_image(outpath, image, np.round(mask))
 
 if __name__ == '__main__':
